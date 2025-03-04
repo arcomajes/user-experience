@@ -1,4 +1,6 @@
-
+function nextSlide(url) {
+    window.location.href = url;
+}
 function nextSlide(url) {
     window.location.href = url;
 }
@@ -7,28 +9,27 @@ function prevSlide(url) {
     window.location.href = url;
 }
 
-function showMore(type) {
-    let extraImage = document.getElementById(`${type}-sample-extra`);
-    if (extraImage.style.display === "none" || extraImage.classList.contains("hidden")) {
-        extraImage.style.display = "block";
-        extraImage.classList.remove("hidden");
-    } else {
-        extraImage.style.display = "none";
-        extraImage.classList.add("hidden");
-    }
-}
-
-// Open Modal Function
-function openModal(imgElement) {
-    let modal = document.getElementById("imageModal");
-    let modalImg = document.getElementById("modalImg");
-
+// Function to open the modal with the clicked image
+function openModal(img) {
+    const modal = document.getElementById("imageModal");
+    const modalImg = document.getElementById("modalImg");
     modal.style.display = "block";
-    modalImg.src = imgElement.src;
+    modalImg.src = img.src;
 }
 
-// Close Modal Function
+// Function to close the modal
 function closeModal() {
-    let modal = document.getElementById("imageModal");
+    const modal = document.getElementById("imageModal");
     modal.style.display = "none";
+}
+
+// Function to show more samples
+function showMore(type) {
+    if (type === "bad") {
+        const extraBadSample = document.getElementById("bad-sample-extra");
+        extraBadSample.classList.toggle("hidden");
+    } else if (type === "good") {
+        const extraGoodSample = document.getElementById("good-sample-extra");
+        extraGoodSample.classList.toggle("hidden");
+    }
 }

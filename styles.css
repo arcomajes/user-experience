@@ -1,153 +1,647 @@
+/* General Styles */
 body {
-    font-family: Arial, sans-serif;
-    text-align: center;
-    background-color: #f4f4f4;
     margin: 0;
     padding: 0;
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: #fff;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
 }
 
+/* Ensure the body and html take full height */
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden; /* Prevent double scrollbars */
+}
+
+/* Make the slide take full height and width */
 .slide {
-    padding: 50px;
-    background: white;
-    box-shadow: 0px 0px 10px rgba(0,0,0,0.2);
-    width: 80%;
-    margin: auto;
+    height: 100vh;
+    width: 100%;
+    overflow-y: auto;
+    padding: 20px;
+    box-sizing: border-box;
+    position: relative;
+}
+
+/* Floating Scrollbar Styles */
+.slide::-webkit-scrollbar {
+    width: 12px; /* Width of the scrollbar */
+}
+
+.slide::-webkit-scrollbar-track {
+    background: transparent; /* Transparent track */
+}
+
+.slide::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.5); /* Semi-transparent thumb */
     border-radius: 10px;
-    margin-top: 50px;
+    border: 3px solid transparent; /* Adds padding around the thumb */
+    background-clip: padding-box; /* Ensures the border is transparent */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* Adds a shadow for a floating effect */
 }
 
-button {
-    padding: 10px 20px;
-    margin-top: 20px;
-    font-size: 16px;
+.slide::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.7); /* Brighter thumb on hover */
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5); /* Enhanced shadow on hover */
+}
+
+/* Ensure the scrollbar is always visible */
+.slide {
+    scrollbar-width: thin; /* For Firefox */
+    scrollbar-color: rgba(255, 255, 255, 0.5) transparent; /* For Firefox */
+}
+
+.content h1 {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    animation: fadeIn 2s ease-in-out;
+}
+
+.content p {
+    font-size: 1.5rem;
+    margin-bottom: 40px;
+    animation: fadeIn 3s ease-in-out;
+}
+
+button.next {
+    padding: 15px 30px;
+    font-size: 1.2rem;
+    color: #764ba2;
+    background: #fff;
     border: none;
-    background: blue;
-    color: white;
+    border-radius: 50px;
     cursor: pointer;
-    border-radius: 5px;
+    transition: background 0.3s ease, transform 0.3s ease;
+    animation: bounce 2s infinite;
 }
 
-button:hover {
-    background: darkblue;
+button.next:hover {
+    background: #f0f0f0;
+    transform: scale(1.1);
 }
 
+/* Graphics */
+.graphics {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+.circle, .square, .triangle {
+    position: absolute;
+    background: rgba(255, 255, 255, 0.1);
+    animation: float 6s infinite ease-in-out;
+}
+
+.circle {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    top: 10%;
+    left: 5%;
+    animation-duration: 8s;
+}
+
+.square {
+    width: 120px;
+    height: 120px;
+    top: 60%;
+    left: 80%;
+    animation-duration: 10s;
+}
+
+.triangle {
+    width: 0;
+    height: 0;
+    border-left: 80px solid transparent;
+    border-right: 80px solid transparent;
+    border-bottom: 140px solid rgba(255, 255, 255, 0.1);
+    top: 20%;
+    left: 70%;
+    animation-duration: 12s;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+@keyframes float {
+    0% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-20px) rotate(180deg); }
+    100% { transform: translateY(0) rotate(360deg); }
+}
+
+/* Content Box Styles */
+.content-box {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 20px;
+    border-radius: 15px;
+    margin-bottom: 30px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    animation: fadeIn 2s ease-in-out;
+}
+
+.content-box p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* Second Slide */
 .button-container {
     display: flex;
-    justify-content: space-between;  /* Buttons on opposite sides */
-    width: 100%;
-    margin-top: 20px;
+    justify-content: space-between;
+    margin-top: 40px;
 }
 
-.back {
-    background: gray;
+button.back, button.next {
+    padding: 15px 30px;
+    font-size: 1.2rem;
+    color: #764ba2;
+    background: #fff;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.3s ease;
 }
 
-.back:hover {
-    background: darkgray;
-}
-
-.content-box {
+button.back:hover, button.next:hover {
     background: #f0f0f0;
-    padding: 15px;
-    border-radius: 8px;
-    margin: 15px 0;
+    transform: scale(1.1);
 }
 
+button.back {
+    background: rgba(255, 255, 255, 0.8);
+    color: #764ba2;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .content h1 {
+        font-size: 2rem;
+    }
+
+    .content-box p {
+        font-size: 1rem;
+    }
+
+    button.back, button.next {
+        padding: 10px 20px;
+        font-size: 1rem;
+    }
+}
+
+/* 3rd slide */
 .bullet-list {
-    margin: 20px 0;
-    padding-left: 20px;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    text-align: left;
+    max-width: 600px;
+    margin: 0 auto 40px;
+    animation: fadeIn 2s ease-in-out;
 }
 
 .bullet-list li {
-    font-size: 18px;
-    margin-bottom: 10px;
-}
-.comparison-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin: 20px 0;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 15px;
+    padding-left: 30px;
+    position: relative;
 }
 
-.comparison-table th, .comparison-table td {
-    border: 1px solid #ccc;
-    padding: 10px;
+.bullet-list li::before {
+    content: "•";
+    color: #fff;
+    font-size: 1.5rem;
+    position: absolute;
+    left: 0;
+    top: -5px;
+    animation: bounce 1s infinite;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .bullet-list li {
+        font-size: 1rem;
+        padding-left: 25px;
+    }
+
+    .bullet-list li::before {
+        font-size: 1.2rem;
+        top: -3px;
+    }
+}
+/*4th slide*/
+/* Icon Styles */
+.bullet-list li {
+    display: flex;
+    align-items: center;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 15px;
+    padding-left: 30px;
+    position: relative;
+    animation: fadeIn 1s ease-in-out;
+}
+
+.bullet-list li .icon {
+    font-size: 1.5rem;
+    margin-right: 15px;
+    animation: bounce 2s infinite;
+}
+
+/* Enhanced Bullet List Animation */
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+/* Hover Effects for List Items */
+.bullet-list li:hover {
+    transform: scale(1.05);
+    transition: transform 0.3s ease;
+}
+
+.bullet-list li:hover .icon {
+    animation: spin 1s ease-in-out;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .bullet-list li {
+        font-size: 1rem;
+        padding-left: 25px;
+    }
+
+    .bullet-list li .icon {
+        font-size: 1.2rem;
+        margin-right: 10px;
+    }
+}
+/*5th slide*/
+/* Comparison Table Styles */
+.comparison-table {
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto 40px;
+    border-collapse: collapse;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 15px;
+    overflow: hidden;
+    animation: fadeIn 2s ease-in-out;
+}
+
+.comparison-table th,
+.comparison-table td {
+    padding: 15px;
     text-align: center;
+    border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .comparison-table th {
-    background-color: #f4f4f4;
-    font-weight: bold;
+    background: rgba(255, 255, 255, 0.2);
+    font-size: 1.1rem;
+    font-weight: 600;
 }
 
-.comparison-table td:nth-child(2) {
-    font-weight: bold;
-    background-color: #e8e8e8;
+.comparison-table td {
+    font-size: 1rem;
+    line-height: 1.6;
 }
 
+.comparison-table tbody tr:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transition: background 0.3s ease;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .comparison-table th,
+    .comparison-table td {
+        padding: 10px;
+        font-size: 0.9rem;
+    }
+}
+/*6th slide*/
+/* Trend List Styles */
 .trend-list {
-    list-style-type: disc;
-    padding-left: 20px;
-    font-size: 18px;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    text-align: left;
+    max-width: 600px;
+    margin: 0 auto 40px;
+    animation: fadeIn 2s ease-in-out;
 }
 
 .trend-list li {
-    margin: 10px 0;
+    display: flex;
+    align-items: center;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 15px;
+    padding-left: 30px;
+    position: relative;
+    animation: fadeIn 1s ease-in-out;
 }
 
+.trend-list li .icon {
+    font-size: 1.5rem;
+    margin-right: 15px;
+    animation: bounce 2s infinite;
+}
+
+/* Enhanced Trend List Animation */
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+/* Hover Effects for List Items */
+.trend-list li:hover {
+    transform: scale(1.05);
+    transition: transform 0.3s ease;
+}
+
+.trend-list li:hover .icon {
+    animation: spin 1s ease-in-out;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .trend-list li {
+        font-size: 1rem;
+        padding-left: 25px;
+    }
+
+    .trend-list li .icon {
+        font-size: 1.2rem;
+        margin-right: 10px;
+    }
+}
+/*7th slide*/
+/* Challenges & Future Container */
+.challenges-future-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 40px;
+    max-width: 1000px;
+    margin: 0 auto 40px;
+    animation: fadeIn 2s ease-in-out;
+}
+
+.challenges, .future {
+    flex: 1;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 15px;
+    padding: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.challenges:hover, .future:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* UX List Styles */
 .ux-list {
-    list-style-type: disc;
-    padding-left: 20px;
-    font-size: 18px;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    text-align: left;
 }
 
 .ux-list li {
-    margin: 10px 0;
+    display: flex;
+    align-items: center;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 15px;
+    padding-left: 30px;
+    position: relative;
+    animation: fadeIn 1s ease-in-out;
 }
 
+.ux-list li .icon {
+    font-size: 1.5rem;
+    margin-right: 15px;
+    animation: bounce 2s infinite;
+}
+
+/* Hover Effects for List Items */
+.ux-list li:hover {
+    transform: scale(1.05);
+    transition: transform 0.3s ease;
+}
+
+.ux-list li:hover .icon {
+    animation: spin 1s ease-in-out;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .challenges-future-container {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .ux-list li {
+        font-size: 1rem;
+        padding-left: 25px;
+    }
+
+    .ux-list li .icon {
+        font-size: 1.2rem;
+        margin-right: 10px;
+    }
+}
+/*8th slide*/
+/* UX List Styles */
 .ux-list {
-    list-style-type: disc;
-    padding-left: 20px;
-    font-size: 18px;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    text-align: left;
+    max-width: 800px;
+    margin: 0 auto 40px;
+    animation: fadeIn 2s ease-in-out;
 }
 
 .ux-list li {
-    margin: 10px 0;
+    display: flex;
+    align-items: center;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 15px;
+    padding-left: 30px;
+    position: relative;
+    animation: fadeIn 1s ease-in-out;
 }
 
+.ux-list li .icon {
+    font-size: 1.5rem;
+    margin-right: 15px;
+    animation: bounce 2s infinite;
+}
+
+/* Hover Effects for List Items */
+.ux-list li:hover {
+    transform: scale(1.05);
+    transition: transform 0.3s ease;
+}
+
+.ux-list li:hover .icon {
+    animation: spin 1s ease-in-out;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .ux-list li {
+        font-size: 1rem;
+        padding-left: 25px;
+    }
+
+    .ux-list li .icon {
+        font-size: 1.2rem;
+        margin-right: 10px;
+    }
+}
+/*9th slide*/
+/* Image Container Styles */
 .image-container {
-    text-align: center;
-    margin-top: 20px;
+    max-width: 800px;
+    margin: 0 auto 40px;
+    animation: fadeIn 2s ease-in-out;
 }
 
 .slide-image {
-    width: 80%;
-    max-width: 600px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    border-radius: 15px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-
-
-.hidden {
-    display: none;
+.slide-image:hover {
+    transform: scale(1.05);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
 }
 
+/* Responsive Design */
+@media (max-width: 768px) {
+    .image-container {
+        max-width: 100%;
+        padding: 0 20px;
+    }
+}
+/*10th slide*/
+/* Make the Slide Scrollable */
+.slide {
+    height: 100vh;
+    overflow-y: auto;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+/* Content Container */
+.content {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px 0;
+}
+
+/* Image Container Styles */
 .image-container {
+    max-width: 800px;
+    margin: 20px auto;
     text-align: center;
-    margin: 20px 0;
+    animation: fadeIn 2s ease-in-out;
 }
 
-.main-image, .small-image {
-    width: 60%;
-    max-width: 400px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    cursor: pointer;
-    transition: transform 0.3s ease;
+.main-image {
+    width: 100%;
+    border-radius: 15px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.small-image {
+    width: 80%;
+    border-radius: 15px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .main-image:hover, .small-image:hover {
     transform: scale(1.05);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+}
+
+/* See More Button Styles */
+.see-more-text {
+    margin-top: 10px;
+}
+
+.see-more-btn {
+    padding: 10px 20px;
+    font-size: 1rem;
+    color: #764ba2;
+    background: #fff;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.see-more-btn:hover {
+    background: #f0f0f0;
+    transform: scale(1.1);
+}
+
+/* Hidden Class for Extra Samples */
+.hidden {
+    display: none;
 }
 
 /* Modal Styles */
@@ -155,31 +649,267 @@ button:hover {
     display: none;
     position: fixed;
     z-index: 1000;
+    padding-top: 60px;
     left: 0;
     top: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.8);
-    text-align: center;
-    padding-top: 50px;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.9);
 }
 
 .modal-content {
+    margin: auto;
+    display: block;
     max-width: 90%;
-    max-height: 90%;
-    border-radius: 10px;
+    max-height: 80vh;
+    border-radius: 15px;
 }
 
 .close {
     position: absolute;
     top: 20px;
-    right: 30px;
-    color: white;
+    right: 35px;
+    color: #fff;
     font-size: 40px;
     font-weight: bold;
+    transition: color 0.3s ease;
     cursor: pointer;
 }
 
 .close:hover {
-    color: #ccc;
+    color: #764ba2;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .small-image {
+        width: 100%;
+    }
+
+    .see-more-btn {
+        padding: 8px 16px;
+        font-size: 0.9rem;
+    }
+}
+/*11th slide*/
+/* Thank You Slide Styles */
+.slide .content {
+    text-align: center;
+    animation: fadeIn 2s ease-in-out;
+}
+
+.slide h1 {
+    font-size: 4rem;
+    margin-bottom: 20px;
+    animation: bounce 2s infinite;
+}
+
+.slide p {
+    font-size: 1.5rem;
+    margin-bottom: 40px;
+    animation: fadeIn 3s ease-in-out;
+}
+
+/* Confetti Animation */
+.confetti-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.confetti {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background: #ffd700; /* Gold color */
+    border-radius: 50%;
+    animation: confetti-fall 5s linear infinite;
+}
+
+.confetti:nth-child(1) {
+    left: 10%;
+    animation-delay: 0s;
+}
+
+.confetti:nth-child(2) {
+    left: 20%;
+    animation-delay: 1s;
+}
+
+.confetti:nth-child(3) {
+    left: 30%;
+    animation-delay: 2s;
+}
+
+.confetti:nth-child(4) {
+    left: 40%;
+    animation-delay: 3s;
+}
+
+.confetti:nth-child(5) {
+    left: 50%;
+    animation-delay: 4s;
+}
+
+.confetti:nth-child(6) {
+    left: 60%;
+    animation-delay: 0.5s;
+}
+
+.confetti:nth-child(7) {
+    left: 70%;
+    animation-delay: 1.5s;
+}
+
+.confetti:nth-child(8) {
+    left: 80%;
+    animation-delay: 2.5s;
+}
+
+.confetti:nth-child(9) {
+    left: 90%;
+    animation-delay: 3.5s;
+}
+
+.confetti:nth-child(10) {
+    left: 100%;
+    animation-delay: 4.5s;
+}
+
+@keyframes confetti-fall {
+    0% {
+        transform: translateY(-100vh) rotate(0deg);
+    }
+    100% {
+        transform: translateY(100vh) rotate(360deg);
+    }
+}
+
+/* Floating Graphics */
+.graphics .circle,
+.graphics .square,
+.graphics .triangle {
+    animation: float 6s infinite ease-in-out;
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(0) rotate(0deg);
+    }
+    50% {
+        transform: translateY(-20px) rotate(180deg);
+    }
+    100% {
+        transform: translateY(0) rotate(360deg);
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .slide h1 {
+        font-size: 3rem;
+    }
+
+    .slide p {
+        font-size: 1.2rem;
+    }
+}
+/* Team Members Section */
+.team-container {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    margin: 40px auto;
+    animation: fadeIn 2s ease-in-out;
+}
+
+.team-member {
+    text-align: center;
+}
+
+.image-wrapper {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    overflow: hidden;
+    position: relative;
+    margin: 0 auto;
+    animation: float 4s infinite ease-in-out;
+}
+
+.team-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease, filter 0.5s ease;
+}
+
+.image-wrapper:hover .team-image {
+    transform: scale(1.1);
+    filter: brightness(1.2);
+}
+
+.team-name {
+    font-size: 1.2rem;
+    margin-top: 10px;
+    color: #fff;
+    animation: fadeIn 3s ease-in-out;
+}
+
+/* Floating Animation */
+@keyframes float {
+    0% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .team-container {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .image-wrapper {
+        width: 120px;
+        height: 120px;
+    }
+
+    .team-name {
+        font-size: 1rem;
+    }
+}
+/* Center the Back Button Only on the 11th Slide */
+.button-container.center-button {
+    display: flex;
+    justify-content: center; /* Center the button horizontally */
+    margin-top: 40px;
+}
+
+.button-container.center-button .back {
+    padding: 15px 30px;
+    font-size: 1.2rem;
+    color: #764ba2;
+    background: #fff;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.3s ease;
+    animation: bounce 2s infinite;
+}
+
+.button-container.center-button .back:hover {
+    background: #f0f0f0;
+    transform: scale(1.1);
 }

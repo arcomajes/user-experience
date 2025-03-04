@@ -3,51 +3,62 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Slide 10 - UX & UI Samples</title>
+    <title>Slide 10 - Good & Bad UX/UI Examples</title>
     <link rel="stylesheet" href="../styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 </head>
 <body>
-
     <div class="slide">
-        <h1>Good & Bad UX/UI Examples</h1>
+        <div class="content">
+            <h1>UX/UI Examples</h1>
 
-        <!-- First Image (Same as Ninth Page) -->
-        <div class="image-container">
-            <img src="../images/sampol1.png" alt="UX and UI Design" class="main-image" onclick="openModal(this)">
+            <!-- First Image (Same as Ninth Page) -->
+            <div class="image-container">
+                <img src="../images/sampol1.png" alt="UX and UI Design" class="main-image" onclick="openModal(this)">
+            </div>
+
+            <!-- Second Image - Bad Sample -->
+            <div class="image-container">
+                <h2>Samples of Bad UI/UX</h2>
+                <img src="../images/bad1.png" alt="Bad UX Sample" class="small-image" onclick="openModal(this)">
+                <!-- Extra Bad Sample (Hidden by Default) -->
+                <div class="image-container hidden" id="bad-sample-extra">
+                    <img src="../images/bad2.png" alt="Another Bad UX Sample" class="small-image" onclick="openModal(this)">
+                </div>
+                <p class="see-more-text">
+                    <button onclick="showMore('bad')" class="see-more-btn">See More</button>
+                </p>
+            </div>
+
+            
+
+            <!-- Third Image - Good Sample -->
+            <div class="image-container">
+                <h2>Samples of Good UI/UX</h2>
+                <img src="../images/good1.png" alt="Good UX Sample" class="small-image" onclick="openModal(this)">
+                <!-- Extra Good Sample (Hidden by Default) -->
+                <div class="image-container hidden" id="good-sample-extra">
+                    <img src="../images/good3.png" alt="Another Good UX Sample" class="small-image" onclick="openModal(this)">
+                </div>
+                <p class="see-more-text">
+                    <button onclick="showMore('good')" class="see-more-btn">See More</button>
+                </p>
+            </div>
+
+            
+
+            <!-- Navigation Buttons -->
+            <div class="button-container">
+                <button class="back" onclick="prevSlide('Nineth.html')">Back</button>
+                <button class="next" onclick="nextSlide('Eleventh.html')">Next</button>
+            </div>
         </div>
 
-        <!-- Second Image - Bad Sample -->
-        <div class="image-container">
-            <h1>Samples of Bad UI/UX</h1>
-            <img src="../images/bad1.png" alt="Bad UX Sample" class="small-image" onclick="openModal(this)">
-            <p class="see-more-text">
-                <button onclick="showMore('bad')" class="see-more-btn">See More</button>
-            </p>
-        </div>
-
-        <!-- Extra Bad Sample (Hidden by Default) -->
-        <div class="image-container hidden" id="bad-sample-extra">
-            <img src="../images/bad2.png" alt="Another Bad UX Sample" class="small-image" onclick="openModal(this)">
-        </div>
-
-        <!-- Third Image - Good Sample -->
-        <div class="image-container">
-            <h1>Samples of Good UI/UX</h1>
-            <img src="../images/good1.png" alt="Good UX Sample" class="small-image" onclick="openModal(this)">
-            <p class="see-more-text">
-                <button onclick="showMore('good')" class="see-more-btn">See More</button>
-            </p>
-        </div>
-
-        <!-- Extra Good Sample (Hidden by Default) -->
-        <div class="image-container hidden" id="good-sample-extra">
-            <img src="../images/good2.png" alt="Another Good UX Sample" class="small-image" onclick="openModal(this)">
-        </div>
-
-        <!-- Navigation Buttons -->
-        <div class="button-container">
-            <button class="back" onclick="prevSlide('Nineth.html')">Back</button>
-            <button class="next" onclick="nextSlide('Eleventh.html')">Next</button>
+        <!-- Graphics -->
+        <div class="graphics">
+            <div class="circle"></div>
+            <div class="square"></div>
+            <div class="triangle"></div>
         </div>
     </div>
 
